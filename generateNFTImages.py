@@ -13,7 +13,7 @@ MONKEY_IMAGES_DIRECTORY = "./WuKongLayer"
 OUTPUT_DIRECTORY = "./NFTImages"
 SIGNATURE_PATH = "./Signature_HQ.PNG"
 LOGO_PATH = "Logo_HQ.PNG"
-FONT_PATH = "./arlrdbd.ttf"
+FONT_PATH = "./Font.ttf"
 FONT_SIZE = 140
 IMAGE_PADDING = 40
 LOGO_SIZE = 360
@@ -25,19 +25,19 @@ monkey_images_dict = {}
 try:
 	signature_image = Image.open(SIGNATURE_PATH).convert("RGBA")
 except:
-	print(f"{Fore.LIGHTRED_EX}Signature image not found! Please put Signature_HQ.PNG to the current working directory!")
+	print(f"{Fore.LIGHTRED_EX}Signature image not found! Please put {SIGNATURE_PATH} to the current working directory!")
 	sys.exit()
 
 try:
 	logo_image = Image.open(LOGO_PATH).convert("RGBA").resize((LOGO_SIZE, LOGO_SIZE))
 except:
-	print(f"{Fore.LIGHTRED_EX}Logo image not found! Please put Logo_HQ.PNG to the current working directory!")
+	print(f"{Fore.LIGHTRED_EX}Logo image not found! Please put {LOGO_PATH} to the current working directory!")
 	sys.exit()
 
 try:
 	font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
 except:
-	print(f"{Fore.LIGHTRED_EX}Font not found! Please put arlrdbd.ttf to the current working directory!")
+	print(f"{Fore.LIGHTRED_EX}Font not found! Please put {FONT_PATH} to the current working directory!")
 	sys.exit()
 
 print(f"{Fore.YELLOW}----- All images will be generated into the NFTImages/ folder -----\n{Fore.RESET}")
