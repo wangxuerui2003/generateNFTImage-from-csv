@@ -42,7 +42,7 @@ except:
 
 print(f"{Fore.YELLOW}----- All images will be generated into the NFTImages/ folder -----\n{Fore.RESET}")
 
-mode = input("Choose mode (0 for generate all, 1 for ask before generate, q for quit): ")
+mode = input("Choose mode (0 for generate all, 1 for ask before every image generate, q for quit): ")
 while mode != "0" and mode != "1" and mode != 'q':
 	print(f"{Fore.LIGHTRED_EX}Invalid mode!")
 	mode = input("Choose mode (0 for generate all, 1 for ask before generate): ")
