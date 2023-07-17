@@ -207,8 +207,10 @@ def put_images_to_folder(folder_name: str, nft_info_list: list[dict]):
 			print(f"{image_path} already exists, skipping...")
 			continue
 		if mode == 1: # if in prompting mode
-			option = input(f"{Fore.RESET}Do you wish to generate {nft_info['nft_number_str']}.png? (N/Y, default Y): ")
+			option = input(f"{Fore.RESET}Do you wish to generate {nft_info['nft_number_str']}.png? (Y/N/Q(quit), default Y): ")
 			if option.upper() == 'N':
+				continue
+			elif option.upper() == 'Q':
 				return
 		print(f"{Fore.LIGHTMAGENTA_EX}Generating {nft_info['nft_number_str']}.png...", end='')
 		generate_stacked_image(stack_numbers, nft_info["signature_bool"], nft_info["nft_number_str"], image_path) # generate target image and save
