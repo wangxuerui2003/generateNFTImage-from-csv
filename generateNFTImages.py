@@ -72,7 +72,7 @@ def get_nft_info_list_from_csv(csv_path: str) -> list[dict]:
 					"nft_number_str": info.get("NFTNumber"),
 					"signature_bool": True if info.get("Signature") == "True" else False
 				}
-				if temp_dict.get("images_stack") and temp_dict.get("nft_number_str") and temp_dict.get("signature_bool"):
+				if temp_dict.get("images_stack") != None and temp_dict.get("nft_number_str") != None and temp_dict.get("signature_bool") != None:
 					nft_info_list.append(temp_dict)
 	except IOError:
 		print(f"\n{Fore.LIGHTRED_EX}CSV file {csv_path} does not exist")
