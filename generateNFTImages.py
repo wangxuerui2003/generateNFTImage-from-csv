@@ -13,6 +13,7 @@ MONKEY_IMAGES_DIRECTORY = "./WuKongLayer"
 OUTPUT_DIRECTORY = "./NFTImages"
 SIGNATURE_PATH = "./Signature_HQ.PNG"
 LOGO_PATH = "Logo_HQ.PNG"
+WHITE_LAYER_PATH = "White.PNG"
 FONT_PATH = "./Font.ttf"
 FONT_SIZE = 140
 IMAGE_PADDING = 40
@@ -33,6 +34,13 @@ try:
 except:
 	print(f"{Fore.LIGHTRED_EX}Logo image not found! Please put {LOGO_PATH} to the current working directory!")
 	sys.exit()
+
+try:
+	white_layer = Image.open(WHITE_LAYER_PATH).convert("RGBA")
+except:
+	print(f"{Fore.LIGHTRED_EX}White layer image not found! Please put {WHITE_LAYER_PATH} to the current working directory!")
+	sys.exit()
+
 
 try:
 	font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
@@ -133,6 +141,7 @@ def stack_image_layers(images: list, stack_numbers_list: list, signature: bool):
 		Stack the image layers with a special logic
 	"""
 
+	images.append(white_layer)
 	images.append(monkey_images_dict['a'][stack_numbers_list[0] - 1])
 	images.append(monkey_images_dict['b'][stack_numbers_list[1] - 1])
 	images.append(monkey_images_dict['c'][stack_numbers_list[2] - 1])
@@ -186,7 +195,7 @@ def generate_stacked_image(stack_numbers_list: int, signature: bool, nft_number:
 
 	# stack the layers
 	for image in images:
-		stacked_image.paste(image, (0, 0), mask=image)
+		stacked_image.alpha_composite(image, dest=(0, 0), source=(0, 0))
 	
 	stacked_image.paste(logo_image, (IMAGE_PADDING, max_height - IMAGE_PADDING - logo_image.height - 15), mask=logo_image) # paste logo
 
@@ -224,6 +233,7 @@ def close_images():
 			image.close()
 	logo_image.close()
 	signature_image.close()
+	white_layer.close()
 
 
 def main():
